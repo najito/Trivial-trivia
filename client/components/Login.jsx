@@ -6,7 +6,8 @@ class Login extends Component {
     }
     render() {
         return (
-            <React.Fragment>
+            <div className="login">
+                <h2>Login</h2>
                 <input
                 type="text"
                 placeholder="Username"
@@ -19,6 +20,7 @@ class Login extends Component {
                 name="Password entry"
                 onChange={(e)=> this.props.setPassword1(e.target.value) }
                 />
+                <div id="login-buttons">
                 <input
                 type="button"
                 value="Log-In"
@@ -45,7 +47,8 @@ class Login extends Component {
                 value="Sign-Up" 
                 name="SignUpSwitch" 
                 onClick={ this.props.signUp }/>
-            </React.Fragment>
+                </div>
+            </div>
         )
     }
 }

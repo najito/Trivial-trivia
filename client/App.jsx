@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import MainContainer from './containers/MainContainer.jsx';
+import './assets/Authentication.scss'
 
 class App extends Component {
     constructor(props, context) {
@@ -91,7 +92,7 @@ class App extends Component {
         this.setState((state) => {
             return {...state,
             score : state.score + 1
-            
+
         }  
         })
     }
@@ -109,7 +110,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <MainContainer
                     //data
                     username={ this.state.username } 
@@ -129,7 +130,7 @@ class App extends Component {
                     setPassword2={ this.setPassword2 }
                     setAnswer={ this.setAnswer }
                     setScore={ this.setScore }/>
-                    </div>
+            </React.Fragment>
         )
     }
 }

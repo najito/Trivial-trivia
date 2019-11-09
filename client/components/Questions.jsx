@@ -1,13 +1,14 @@
 import React from 'react';
 import { useState } from 'react'
+import Table from 'react-bootstrap/table'
 
 const Questions = (props) => {
     const [count, setCount] = useState(0);
     const tableRows = [];
     const questions = props.questions
     const displayQuestion = questions[count]
-    const categories = ['Difficulty', 'Category', 'Question', 'Answer','ID'];
-    const questionAccess = ['value', 'category.title', 'question', 'answer', 'id'];
+    const categories = ['Difficulty', 'Category', 'Question','ID'];
+    const questionAccess = ['value', 'category.title', 'question', 'id'];
     for (let i = 0; i < 5; i ++) {
         tableRows.push(<tr>
             <td>
@@ -17,27 +18,32 @@ const Questions = (props) => {
         </tr>)
     }
     return (
-        <React.Fragment>
-            <table>
+        <div id="questions">
+            <p hidden="true">{displayQuestion.answer}</p>
+            <Table>
                 <tbody>
                 {tableRows}
                 </tbody>
-            </table>
-            <input
-            type ="text"
-            placeholder="type answer here"
-            onChange={(e) => props.setAnswer(e.target.value)}/>
-            <input 
-            type="button" 
-            value="Submit Answer" 
-            onClick={
-                ()=>{
-                    if (props.answer == displayQuestion.answer) {
-                        props.correct()
-                    }
-                    setCount(Math.floor(Math.random()* 100))
-                }}/>
-        </React.Fragment>
+            </Table>
+            <div id="qButtons">
+                <input
+                type ="text"
+                placeholder="type answer here"
+                value={props.answer}
+                onChange={(e) => props.setAnswer(e.target.value)}/>
+                <input 
+                type="button" 
+                value="Submit Answer" 
+                onClick={
+                    (e)=>{
+                        if (props.answer == displayQuestion.answer) {
+                            props.correct()
+                        }
+                        setCount(Math.floor(Math.random()* 100))
+                        props.setAnswer('')
+                    }}/>
+            </div>
+        </div>
       );
 }
  
