@@ -1,22 +1,12 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const app = express();
 
 const userController = require('./controllers/userController');
 const triviaController = require('./controllers/triviaController');
 
 const PORT = 3000;
-const MONGO_URI = 'mongodb+srv://Innovator:Theredshield013@cluster0-b1arx.mongodb.net/test?retryWrites=true&w=majority';
-
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    dbName: 'trivialtrivia'   
-})
-.then(()=> console.log('Connected to Mongo'))
-.catch(err => console.log(err));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))

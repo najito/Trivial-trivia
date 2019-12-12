@@ -1,11 +1,15 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Pool } = require('pg');
 
-const userSchema = new Schema({
-    username: {type: String, required: true},
-    password: {type: String, required: true},
-    score: Number,
-})
+const PG_URI = 'postgres://rufnmnvy:HBTcXg17KAySmwAfb78nzh8tqvPSbuuQ@salt.db.elephantsql.com:5432/rufnmnvy';
 
-module.exports = mongoose.model('users', userSchema);
+const pool = new Pool({
+    connectionString: PG_URI
+  });
+
+module.exports = {
+  query: (text, params, callback) => {
+    console.log('executed query', text);
+    return pool.query(text, params, callback);
+  }
+};
 
